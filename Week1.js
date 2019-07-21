@@ -1,6 +1,11 @@
+runNowTime();
 var app = new Vue({
     el:'#thispage',
     data:{
+        toDayDate:'',
+        toDayTime:'',
+        status:1,
+        timer:"25:00",
         newToDo:'',
         list:[
             {
@@ -41,10 +46,36 @@ var app = new Vue({
             this.list.push({
                 ID:this.list.length+1,
                 Title:title,
-                Completed:false
+                Completed:false,
+                CreateDate:'2019/7/21'
             });
 
             this.newToDo='';
+        },
+        play:function(){
+            setTimer();
+            runTimer();
+            this.status=2;
+        },
+        paused:function(){
+            this.status=3;
+            cancelTimer();
+        },
+        play2:function(){
+            setPausedTimer();
+            runTimer();
+            this.status=2;
+        },
+        cancel:function(){
+            cancelTimer();
+            this.timer="25:00";
+            this.status=1;
+        },
+        restart:function(){
+            cancelTimer();
+            setTimer();
+            runTimer();
+            this.status=2;
         },
 
         
@@ -73,10 +104,65 @@ var app = new Vue({
 
 function setCircle(p){
     var cT = document.getElementById('circleT');
-    cT.style.strokeDasharray=p*126+" 100";
+    cT.style.strokeDasharray=p*126+" 300";
 }
-setCircle(0.6);
 
+
+
+function getDate(){
+    var today = new Date();
+    var date =today.getFullYear()+"/"+(today.getMonth()+1)+"/"+today.getDate();
+    return date;
+}
 function getTime(){
-    var nowTime =Date();
+    var today = new Date();
+    var date =today.getHours()+":"+today.getMinutes();
+    return date;
+}
+
+var TimerInitSecond=25*60*1000;
+var RemainingTime=TimerInitSecond;
+var TimerCreateTimeSecond=Date.now();
+var TimerGoalTimeSecond=TimerCreateTimeSecond+TimerInitSecond;
+
+function setTimer(){
+    console.log("setTimer");
+    TimerCreateTimeSecond=Date.now();
+    RemainingTime=TimerInitSecond;
+    TimerGoalTimeSecond=TimerCreateTimeSecond+TimerInitSecond;
+}
+function setTimerText(){
+    app.timer=RemainingTimer();
+}
+function RemainingTimer(){
+    RemainingTime=TimerGoalTimeSecond-Date.now();
+    var Minute=parseInt(RemainingTime/1000/60,10);
+    var Second=parseInt(RemainingTime/1000%60,10);
+    setCircle(RemainingTimerCircle());
+    return Minute+":"+Second;
+}
+function RemainingTimerCircle(){
+    
+    return 1-RemainingTime/TimerInitSecond;
+}
+var timerID = 0;
+function runTimer(){
+    timerID = setInterval('setTimerText()',300);
+}
+
+function setNowTime(){
+    app.toDayDate=getDate();
+    app.toDayTime=getTime();
+}
+
+function runNowTime(){
+    setInterval('setNowTime()',3000);
+}
+
+function cancelTimer(){
+    clearTimeout(timerID);
+}
+function setPausedTimer(){
+    TimerCreateTimeSecond=Date.now();
+    TimerGoalTimeSecond=TimerCreateTimeSecond+RemainingTime;
 }
