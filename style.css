@@ -1,0 +1,105 @@
+       
+        .svgOutside{
+            border: 2px;
+            border-radius: 50%;
+            transform: rotate(-90deg);
+        }
+        .circleOutside{
+            fill: #FFFFFF;
+            stroke: #FFC6C5;
+            stroke-width:4;
+            stroke-dasharray: 0 300;
+            
+        }
+        .circleInside{
+            fill: #FE7674;
+                        
+        }
+        .circleText{
+            font-size: 5px;
+            
+        }
+        .timeLine{
+            z-index: 1;
+            position: absolute;
+            justify-content: center;
+            align-items: center;
+            transform: rotate(90deg);
+            top: -1rem;
+            left: 44.4%;
+            right: 0;
+            bottom:0;
+        }
+        .TimeText{
+            z-index: 1;
+            position: absolute;
+            justify-content: center;
+            align-items: center;
+            top: -10%;
+            left: 0;
+            right: 0;
+            bottom:0;
+            display: flex;
+            font-size: 60px;
+        }
+        .TimePaly{
+            z-index: 1;
+            position: absolute;
+            justify-content: center;
+            align-items: center;
+            top: 62%;
+            left: 44%;
+            right: 0;
+            bottom:0;
+            display: flex;
+        }
+        .CancelIcon{
+            transform: rotate(45deg)
+        }
+        
+        @keyframes spin{
+            to{transform: rotate(.5turn);}
+        }
+        @keyframes bg{
+            50%{background: #655;}
+        }
+        
+        .setHeigh{
+            height: 1080px;
+        }
+        .bg-Left{
+            background-color: #FE7674;
+            color: white;
+        }
+        .bg-Right{
+            background-color: #F9EAD8;
+            color: #FE7674;
+        }
+        .sonic{
+
+        }
+        .day{
+            font-size:20px;
+        }
+        .now-Time{
+            font-size: 45px;
+        }
+        .thing-doing-now-text{
+            font-size: 28px;
+            text-align: center;
+        }
+        .addToDoCss{
+            border-bottom: 1px solid #FD7573;
+        }
+        .addNew{
+            background-color: #F9EAD8;
+            color: #FD7573;
+            
+        }
+        .TitleCard{
+            background-color: #FD7573;
+            color: white;
+        }
+        .ToDoCard{
+            background-color:white;
+        }

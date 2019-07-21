@@ -5,6 +5,7 @@ var app = new Vue({
         toDayDate:'',
         toDayTime:'',
         status:1,
+        charted:false,
         timer:"25:00",
         newToDo:'',
         list:[
